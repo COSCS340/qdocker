@@ -22,7 +22,6 @@ RUN apt-get update &&        \
     gcc                      \
     zsh
 
-RUN locale_gen en_US
 RUN if [ ! -d /var/run/sshd ]; then mkdir /var/run/sshd; chmod 0755 /var/run/sshd; fi
 RUN for user in {'jhuber6','thuber1','mgoin','tdixon12'}; do \
         useradd -m -s /bin/zsh $user; \ 
