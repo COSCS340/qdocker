@@ -22,12 +22,6 @@ RUN apt-get update &&        \
     gcc                      \
     zsh
 
-WORKDIR /tmp
-RUN wget 'https://dl.bintray.com/boostorg/release/1.66.0/source/boost_1_66_0.tar.bz2' && \
-	tar -xf boost_1_66_0.tar.bz2 && \
-	./boost_1_66_0/bootsrap.sh && \
-	./boost_1_66_0/b2 install -j2 && \
-
 RUN git clone https://github.com/ornl-qci/xacc && \
 	mkdir -p xacc/build && \ 
 	cd xacc/build && \
