@@ -9,7 +9,7 @@ RUN apt-get update &&        \
     libopenblas-base         \
     openssh-server           \
     python                   \
-    libboost-all-dev         \
+    boost                    \
     lsof                     \
     sudo                     \
     sssd                     \
