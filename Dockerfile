@@ -7,7 +7,6 @@ RUN apt-get update &&        \
     libssl-dev               \
     libcurl4-openssl-dev     \
     libopenblas-base         \
-    libboost-dev-all         \
     openssh-server           \
     python                   \
     lsof                     \
