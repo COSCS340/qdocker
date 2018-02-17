@@ -2,32 +2,31 @@ FROM ubuntu
 
 USER root
 
-RUN apt-get update && \
-  apt-get install -y cmake \
-    libssl-dev \
-    libcurl4-openssl-dev \
-    libopenblas-base \
-    openssh-server \
-    lsof sudo \
-    fonts-dejavu \
-    sssd \
-    sssd-tools \
-    vim \
-    git \
-    wget \
-    zip
+RUN apt-get update &&        \
+	apt-get install -y cmake \
+    libssl-dev               \
+    libcurl4-openssl-dev     \
+    libopenblas-base         \
+    openssh-server           \
+	python                   \
+	libboost-all-dev         \
+    lsof                     \
+	sudo                     \
+    sssd                     \
+    sssd-tools               \
+    vim                      \
+    git                      \
+    wget                     \
+    zip                      \
+    g++                      \
+	gcc
 
+RUN useradd -m -g wheel -s /bin/bash jhuber6 &&  \
+	echo "%wheel ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
 
-RUN cd /root && \
-wget https://github.com/ORNL-QCI/xacc/archive/master.zip && \
-unzip -x master.zip && \
-cd xacc && \
-mkdir build && cd build \
-cmake && \
-make install -j4 
-
-COPY eecsCA_v3.crt /etc/ssl/ 
-COPY sssd.conf /etc/sssd/ 
-COPY common* /etc/pam.d/ 
-RUN chmod 0600 /etc/sssd/sssd.conf /etc/pam.d/common* 
 RUN if [ ! -d /var/run/sshd ]; then mkdir /var/run/sshd; chmod 0755 /var/run/sshd; fi
+
+USER jhuber6
+ENV SHELL /bin/bash
+WORKDIR /home/jhuber6
+COPY test.txt ./test.txt
