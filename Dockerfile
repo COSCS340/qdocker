@@ -3,15 +3,15 @@ FROM ubuntu
 USER root
 
 RUN apt-get update &&        \
-	apt-get install -y cmake \
+    apt-get install -y cmake \
     libssl-dev               \
     libcurl4-openssl-dev     \
     libopenblas-base         \
     openssh-server           \
-	python                   \
-	libboost-all-dev         \
+    python                   \
+    libboost-all-dev         \
     lsof                     \
-	sudo                     \
+    sudo                     \
     sssd                     \
     sssd-tools               \
     vim                      \
@@ -19,10 +19,10 @@ RUN apt-get update &&        \
     wget                     \
     zip                      \
     g++                      \
-	gcc
+    gcc
 
 RUN useradd -m -g wheel -s /bin/bash jhuber6 &&  \
-	echo "%wheel ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+    echo "%wheel ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
 
 RUN if [ ! -d /var/run/sshd ]; then mkdir /var/run/sshd; chmod 0755 /var/run/sshd; fi
 
