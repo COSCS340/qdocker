@@ -21,10 +21,8 @@ RUN apt-get update &&        \
     g++                      \
     gcc
 
-RUN useradd -m -g wheel -s /bin/bash jhuber6 &&  \
-    echo "%wheel ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
-
 RUN if [ ! -d /var/run/sshd ]; then mkdir /var/run/sshd; chmod 0755 /var/run/sshd; fi
+RUN useradd -m -s /bin/bash jhuber6
 
 USER jhuber6
 ENV SHELL /bin/bash
