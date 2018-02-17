@@ -1,0 +1,15 @@
+##################################################################
+#
+#         .zsh_files/.zsh.path file
+#
+#         Read in every time a new interactive zsh is started.
+#         Use it to append to your PATH or redefine it. PATH is
+#         now globally set in /etc/zshrc.
+#
+##################################################################
+
+export LS_COLORS=$LS_COLORS:"*.c=01;93"
+export LS_COLORS=$LS_COLORS:"*.cpp=01;93"
+export LS_COLORS=$LS_COLORS:"*.asm=01;93"
+export LS_COLORS=$LS_COLORS:"*.tex=01;93"
+export LS_COLORS=$LS_COLORS:"*.html=01;93"

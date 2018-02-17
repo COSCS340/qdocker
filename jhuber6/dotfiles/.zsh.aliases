@@ -1,0 +1,21 @@
+##################################################################
+#
+#         .zsh_files/.zsh.aliases file
+#
+#         Read in every time a new interactive zsh is started.
+#         Defines some useful aliases.
+#
+##################################################################
+
+alias RM='rm -f'
+alias libc="-lc -I/lib64/ld-linux-x86-64.so.2"
+alias c='clear'
+alias ls="ls --color=auto -F" # color ls is cool
+alias la="ls -la"
+alias ll="ls -lh"
+alias lla="ls -lah"
+alias l='less'
+alias xterm="export TERM=xterm"
+alias xterm256="export TERM=xterm-256color"
+alias grep=grep --color
+alias du='du -h'

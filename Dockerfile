@@ -1,4 +1,4 @@
-FROM ubuntu
+FROM ubuntu:16.04
 
 USER root
 
@@ -7,9 +7,9 @@ RUN apt-get update &&        \
     libssl-dev               \
     libcurl4-openssl-dev     \
     libopenblas-base         \
+    libboost-dev-all         \
     openssh-server           \
     python                   \
-    libboost-all-dev         \
     lsof                     \
     sudo                     \
     sssd                     \
@@ -19,12 +19,15 @@ RUN apt-get update &&        \
     wget                     \
     zip                      \
     g++                      \
-    gcc
+    gcc                      \
+    zsh
 
 RUN if [ ! -d /var/run/sshd ]; then mkdir /var/run/sshd; chmod 0755 /var/run/sshd; fi
-RUN useradd -m -s /bin/bash jhuber6
+RUN for users in {'jhuber6','thuber1','mgoin','tdixon12'}; do \
+        useradd -m -s /bin/zsh $users \ 
+        echo "$users ALL=(ALL) NOPASSWD: ALL"; \
+    done
 
 USER jhuber6
-ENV SHELL /bin/bash
 WORKDIR /home/jhuber6
-COPY test.txt ./test.txt
+COPY jhuber6/dotfiles/* ./
