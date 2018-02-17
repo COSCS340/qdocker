@@ -22,6 +22,12 @@ RUN apt-get update &&        \
     gcc                      \
     zsh
 
+RUN locale_gen en_US
+RUN if [ ! -d /var/run/sshd ]; then mkdir /var/run/sshd; chmod 0755 /var/run/sshd; fi
+RUN for user in {'jhuber6','thuber1','mgoin','tdixon12'}; do \
+        useradd -m -s /bin/zsh $user; \ 
+        echo "$user ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers; done
+
 RUN git clone https://github.com/ornl-qci/xacc && \
 	mkdir -p xacc/build && \ 
 	cd xacc/build && \
@@ -31,11 +37,6 @@ COPY /audris/eecsCA_v3.crt /etc/ssl/
 COPY /audris/sssd.conf /etc/sssd/ 
 COPY /audris/common* /etc/pam.d/ 
 RUN  chmod 0600 /etc/sssd/sssd.conf /etc/pam.d/common* 
-
-RUN if [ ! -d /var/run/sshd ]; then mkdir /var/run/sshd; chmod 0755 /var/run/sshd; fi
-RUN for users in {'jhuber6','thuber1','mgoin','tdixon12'}; do \
-        useradd -m -s /bin/bash $users; \ 
-        echo "$users ALL=(ALL) NOPASSWD: ALL"; done
 
 USER jhuber6
 WORKDIR /home/jhuber6
