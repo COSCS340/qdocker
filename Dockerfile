@@ -37,18 +37,3 @@ COPY /audris/sssd.conf /etc/sssd/
 COPY /audris/common* /etc/pam.d/ 
 RUN  chmod 0600 /etc/sssd/sssd.conf /etc/pam.d/common* 
 
-USER jhuber6
-WORKDIR /home/jhuber6
-COPY jhuber6/dotfiles/* ./
-
-USER thuber1
-WORKDIR /home/thuber1
-COPY jhuber6/dotfiles/* ./
-
-USER mgoin
-WORKDIR /home/mgoin
-COPY jhuber6/dotfiles/* ./
-
-USER tdixon12
-WORKDIR /home/tdixon12
-COPY jhuber6/dotfiles/* ./
